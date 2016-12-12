@@ -9,13 +9,23 @@ import System.Process (readProcess)
 import Data.List (map)
 import Aliases 
 import HandleCommands (await)
+import Util (say, newLine)
 
 
 main :: IO ()
 main = do
   projectData <- Byte.readFile projectFile
   let projectLines = loadProject projectData
+  ready
   await dummyProjet
+
+
+ready :: IO ()
+ready = do
+  _ <- say "ready"
+  newLine
+  putStrLn "Ready"
+  newLine
 
 
 dummyProjet :: Project

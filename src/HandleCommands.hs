@@ -8,29 +8,31 @@ import Flow
 import System.Process (readProcess)
 import Data.List (map, head)
 import Data.List.Split (splitOn)
+import Util (say, newLine)
 import Aliases 
 
 
-say :: String -> IO String
-say str = do
-  readProcess "say" [ str ] ""
+separator :: IO ()
+separator =
+  putStrLn "********************"
 
 
-newLine :: IO ()
-newLine =
-  putStrLn ""
+enterCommand :: String -> IO ()
+enterCommand projectName = do
+  separator
+  separator
+  putStrLn projectName
+  putStrLn "Enter Command"
+  separator
+  separator
+  newLine
 
 
 await :: Project -> IO ()
 await project = do
-  putStrLn "**************"
-  putStrLn "Enter Command"
-  putStrLn "**************"
-  newLine
+  enterCommand (name project)
   command <- Prelude.getLine
-
   handleCommand project command
-
   await project
 
 
