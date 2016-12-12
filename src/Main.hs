@@ -34,6 +34,12 @@ await project = do
   await project
 
 
+play :: String -> IO ()
+play str = do
+  _ <- say "playing"
+  _ <- readProcess "play" [ str ] ""
+  putStrLn ""
+
 build :: IO ()
 build = do
   putStrLn "-- BUILDING"
@@ -53,6 +59,8 @@ handleCommand project cmd =
   case cmd of
     "build" -> 
       build
+    "play" ->
+      play "doink"
     _ ->
       notRecognized
 
@@ -60,8 +68,8 @@ handleCommand project cmd =
 dummyProjet :: Project
 dummyProjet =
   Project 
-  { name = "Calvin-Piece-0"
-  , voices = [] 
+  { name       = "Calvin-Piece-0"
+  , voices     = [] 
   , beatLength = 5000
   }
 
@@ -70,7 +78,7 @@ loadProject :: Byte.ByteString -> [ Byte.ByteString ]
 loadProject projectData = 
   projectData
   |>Char.split '\n'
-
+  
 
 scoreRoot :: String
 scoreRoot =
