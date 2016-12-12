@@ -21,16 +21,17 @@ main = do
 dummyProjet :: Project
 dummyProjet =
   Project 
-  { name       = "Calvin-Piece-0"
+  { name       = "alternation-piece-11"
   , voices     = [] 
   , beatLength = 5000
   }
 
 
-loadProject :: Byte.ByteString -> [ Byte.ByteString ]
+loadProject :: Byte.ByteString -> [ String ]
 loadProject projectData = 
   projectData
   |>Char.split '\n'
+  |>map Char.unpack
   
 
 scoreRoot :: String

@@ -39,6 +39,11 @@ formatCommand =
   splitOn " "
 
 
+getAudioFileName :: String -> String
+getAudioFileName projectName =
+  projectName ++ ".wav"
+
+
 play :: String -> IO ()
 play str = do
   _ <- say "playing"
@@ -46,8 +51,8 @@ play str = do
   newLine
 
 
-build :: IO ()
-build = do
+build :: [ String ] -> IO ()
+build commandParts = do
   putStrLn "-- BUILDING"
   _ <- say "building"
   newLine
@@ -64,10 +69,16 @@ handleCommand :: Project -> String -> IO ()
 handleCommand project cmd =
   let parts = formatCommand cmd in
   case head parts of
+
     "build" -> 
-      build
+      build parts
+
     "play" ->
-      play "alternation-piece-11.wav"
+      project
+      |>name
+      |>getAudioFileName
+      |>play 
+
     _ ->
       notRecognized
 
