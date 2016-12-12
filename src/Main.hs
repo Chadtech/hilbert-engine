@@ -8,11 +8,7 @@ import Flow
 import System.Process (readProcess)
 import Data.List (map)
 import Aliases 
-
-
-say :: String -> IO String
-say str = do
-  readProcess "say" [ str ] ""
+import HandleCommands (await)
 
 
 main :: IO ()
@@ -22,49 +18,6 @@ main = do
   await dummyProjet
 
 
-await :: Project -> IO ()
-await project = do
-  putStrLn "**************"
-  putStrLn "Enter Command"
-  putStrLn "**************"
-  putStrLn ""
-  command <- Prelude.getLine
-
-  handleCommand project command
-  await project
-
-
-play :: String -> IO ()
-play str = do
-  _ <- say "playing"
-  _ <- readProcess "play" [ str ] ""
-  putStrLn ""
-
-build :: IO ()
-build = do
-  putStrLn "-- BUILDING"
-  _ <- say "building"
-  putStrLn ""
-
-
-notRecognized :: IO ()
-notRecognized = do
-  putStrLn "-- Not recognized"
-  _ <- say "not recognized"
-  putStrLn ""
-
-
-handleCommand :: Project -> String -> IO ()
-handleCommand project cmd =
-  case cmd of
-    "build" -> 
-      build
-    "play" ->
-      play "doink"
-    _ ->
-      notRecognized
-
-
 dummyProjet :: Project
 dummyProjet =
   Project 
@@ -72,7 +25,7 @@ dummyProjet =
   , voices     = [] 
   , beatLength = 5000
   }
-
+  
 
 loadProject :: Byte.ByteString -> [ Byte.ByteString ]
 loadProject projectData = 
@@ -84,9 +37,11 @@ scoreRoot :: String
 scoreRoot =
   "./score"
 
+
 projectFile :: String
 projectFile = 
   "./project.project"
+
 
 askForChar :: String -> IO ()
 askForChar "" = askForChar " [ none ] "
