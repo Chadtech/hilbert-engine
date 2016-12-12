@@ -25,7 +25,7 @@ dummyProjet =
   , voices     = [] 
   , beatLength = 5000
   }
-  
+
 
 loadProject :: Byte.ByteString -> [ Byte.ByteString ]
 loadProject projectData = 
@@ -41,12 +41,3 @@ scoreRoot =
 projectFile :: String
 projectFile = 
   "./project.project"
-
-
-askForChar :: String -> IO ()
-askForChar "" = askForChar " [ none ] "
-askForChar str = do
-  let msg = "Enter String (prev : " ++ str ++ ") :"
-  putStrLn msg
-  enteredChar <- Prelude.getLine
-  askForChar enteredChar

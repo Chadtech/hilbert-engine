@@ -6,8 +6,10 @@ import Data.Int (Int16)
 import Prelude hiding (map, foldr, writeFile, concat)
 import Flow
 import System.Process (readProcess)
-import Data.List (map)
+import Data.List (map, head)
+import Data.List.Split (splitOn)
 import Aliases 
+
 
 say :: String -> IO String
 say str = do
@@ -30,6 +32,11 @@ await project = do
   handleCommand project command
 
   await project
+
+
+formatCommand :: String -> [ String ]
+formatCommand =
+  splitOn " "
 
 
 play :: String -> IO ()
@@ -55,7 +62,8 @@ notRecognized = do
 
 handleCommand :: Project -> String -> IO ()
 handleCommand project cmd =
-  case cmd of
+  let parts = formatCommand cmd in
+  case head parts of
     "build" -> 
       build
     "play" ->

@@ -35,6 +35,13 @@
   (major1) == 1 && (major2) <  4 || \
   (major1) == 1 && (major2) == 4 && (minor) <= 2)
 
+/* package split-0.2.3.1 */
+#define VERSION_split "0.2.3.1"
+#define MIN_VERSION_split(major1,major2,minor) (\
+  (major1) <  0 || \
+  (major1) == 0 && (major2) <  2 || \
+  (major1) == 0 && (major2) == 2 && (minor) <= 3)
+
 /* tool gcc-4.2.1 */
 #define TOOL_VERSION_gcc "4.2.1"
 #define MIN_TOOL_VERSION_gcc(major1,major2,minor) (\
