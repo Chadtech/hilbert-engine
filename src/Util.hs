@@ -1,13 +1,15 @@
 module Util where
 
-import System.Process (readProcess)
+import System.Process (callCommand)
 
 
-say :: String -> IO String
+say :: String -> IO ()
 say str = do
-  -- content <- readProcess "osascript -e" [ "\"set volume 2\"" ] ""
+  callCommand "osascript -e \"set volume 2\" "
+  callCommand ("say " ++ str)
+  callCommand "osascript -e \"set volume 4\" "
+
   -- putStrLn ("WHAT " ++ content)
-  readProcess "say" [ str ] ""
   -- readProcess "osascript" [ "-e", "\"set volume 5\"" ] ""
 
 
