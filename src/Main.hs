@@ -33,7 +33,7 @@ dummyProjet =
   { name       = "alternation-piece-11"
   , voices     = [] 
   , beatLength = 5000
-  }git
+  }
 
 
 loadProject :: Byte.ByteString -> [ String ]
