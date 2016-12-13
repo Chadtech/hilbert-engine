@@ -5,7 +5,7 @@ import qualified Data.ByteString.Char8 as Char
 import Data.Int (Int16)
 import Prelude hiding (map, foldr, writeFile, concat)
 import Flow
-import System.Process (readProcess)
+import System.Process (callCommand)
 import Data.List (map, head)
 import Data.List.Split (splitOn)
 import Util (say, newLine)
@@ -48,22 +48,22 @@ getAudioFileName projectName =
 
 play :: String -> IO ()
 play str = do
-  _ <- say "playing"
-  _ <- readProcess "play" [ str ] ""
+  say "playing"
+  callCommand ("play " ++ str)
   newLine
 
 
 build :: [ String ] -> IO ()
 build commandParts = do
   putStrLn "-- BUILDING"
-  _ <- say "building"
+  say "building"
   newLine
 
 
 notRecognized :: IO ()
 notRecognized = do
   putStrLn "-- Not recognized"
-  _ <- say "not recognized"
+  say "not recognized"
   newLine
 
 

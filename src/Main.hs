@@ -5,7 +5,6 @@ import qualified Data.ByteString.Char8 as Char
 import Data.Int (Int16)
 import Prelude hiding (map, foldr, writeFile, concat)
 import Flow
-import System.Process (readProcess)
 import Data.List (map)
 import Aliases 
 import HandleCommands (await)
@@ -34,7 +33,7 @@ dummyProjet =
   { name       = "alternation-piece-11"
   , voices     = [] 
   , beatLength = 5000
-  }
+  }git
 
 
 loadProject :: Byte.ByteString -> [ String ]

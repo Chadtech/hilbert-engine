@@ -9,10 +9,6 @@ say str = do
   callCommand ("say " ++ str)
   callCommand "osascript -e \"set volume 4\" "
 
-  -- putStrLn ("WHAT " ++ content)
-  -- readProcess "osascript" [ "-e", "\"set volume 5\"" ] ""
-
-
 
 newLine :: IO ()
 newLine =
